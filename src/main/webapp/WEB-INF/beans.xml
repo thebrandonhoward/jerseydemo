@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:jaxrs="http://cxf.apache.org/jaxrs">   
+	
+	<jaxrs:server id="restContainer" address="/">
+		<jaxrs:serviceBeans>
+			<ref bean="walmartWelcomeServiceImpl"/>
+		</jaxrs:serviceBeans>
+		<jaxrs:providers>
+   			<ref bean="propertyFilteringMessageBodyWriter"/>
+   			<!--ref bean="jsonProvider"/-->
+		</jaxrs:providers>
+	</jaxrs:server>
+	
+	<!-- USED TO RETURN ONLY FIELDS OF THE QUERY STRING -->
+	<bean id="propertyFilteringMessageBodyWriter" class="com.hubspot.jackson.jaxrs.PropertyFilteringMessageBodyWriter">
+	</bean>
+	
+	<!--bean id="jsonProvider" class="com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider">
+	</bean-->				 
+	
+</beans>
